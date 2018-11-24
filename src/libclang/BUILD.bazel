@@ -1,0 +1,19 @@
+cc_library(
+    name = "libclang",
+    srcs = glob(["*.cpp", "*.hpp"]),
+    hdrs = glob(["*.hpp"]),
+    include_prefix = "libclang",
+    deps = [
+      "//:cppast_hdrs",
+      "@com_github_zaucy_type_safe//:type_safe",
+      "@bazelregistry_llvm//:clang",
+      "@bazelregistry_tiny_process_library//:tiny-process-library",
+    ],
+    visibility = ["//:__subpackages__"],
+    defines = [
+      "CPPAST_CLANG_BINARY=\\\"\\\"",
+      "CPPAST_LIBCLANG_SYSTEM_INCLUDE_DIR=\\\"\\\"",
+      "CPPAST_VERSION_MAJOR=\\\"0\\\"",
+      "CPPAST_VERSION_MINOR=\\\"0\\\"",
+    ],
+)

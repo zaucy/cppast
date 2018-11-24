@@ -1,0 +1,10 @@
+cc_library(
+  name = "cppast",
+  srcs = glob(["*.cpp"]),
+  deps = [
+    "//:cppast_hdrs",
+    "//src/libclang:libclang",
+    "@com_github_zaucy_type_safe//:type_safe",
+  ],
+  visibility = ["//:__subpackages__"],
+)

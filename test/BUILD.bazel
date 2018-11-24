@@ -1,0 +1,193 @@
+TEST_DEPS = ["//:cppast", ":catch2", ":test", ":test_parser"]
+TEST_DEFINES = select({
+  "//:windows": ["TYPE_SAFE_TEST_NO_STATIC_ASSERT"],
+  "//conditions:default": [],
+})
+
+cc_library(
+    name = "catch2",
+    hdrs = ["@catch2_hpp//file"],
+    strip_include_prefix = "/external/catch2_hpp/file",
+)
+
+cc_library(
+    name = "test",
+    srcs = ["test.cpp"],
+    deps = [":catch2"],
+)
+
+cc_library(
+    name = "test_parser",
+    srcs = ["cpp_type_alias.cpp"],
+    hdrs = ["test_parser.hpp"],
+    include_prefix = "test",
+    deps = ["//:cppast", ":catch2", ":test"],
+)
+
+cc_test(
+    name = "cpp_type_alias",
+    srcs = ["cpp_type_alias.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "code_generator",
+    srcs = ["code_generator.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_alias_template",
+    srcs = ["cpp_alias_template.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_attribute",
+    srcs = ["cpp_attribute.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_class",
+    srcs = ["cpp_class.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_class_template",
+    srcs = ["cpp_class_template.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_enum",
+    srcs = ["cpp_enum.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_friend",
+    srcs = ["cpp_friend.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_function",
+    srcs = ["cpp_function.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_function_template",
+    srcs = ["cpp_function_template.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_language_linkage",
+    srcs = ["cpp_language_linkage.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_member_function",
+    srcs = ["cpp_member_function.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_member_variable",
+    srcs = ["cpp_member_variable.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_namespace",
+    srcs = ["cpp_namespace.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+# cc_test(
+#     name = "cpp_preprocessor",
+#     srcs = ["cpp_preprocessor.cpp"],
+#     deps = TEST_DEPS,
+#     defines = TEST_DEFINES,
+# )
+
+cc_test(
+    name = "cpp_static_assert",
+    srcs = ["cpp_static_assert.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_template_parameter",
+    srcs = ["cpp_template_parameter.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_token",
+    srcs = ["cpp_token.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "cpp_variable",
+    srcs = ["cpp_variable.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+# cc_test(
+#     name = "integration",
+#     srcs = ["integration.cpp"],
+#     deps = TEST_DEPS,
+#     defines = TEST_DEFINES,
+# )
+
+cc_test(
+    name = "libclang_parser",
+    srcs = ["libclang_parser.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "parser",
+    srcs = ["parser.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+# cc_test(
+#     name = "preprocessor",
+#     srcs = ["preprocessor.cpp"],
+#     deps = TEST_DEPS + ["//src/libclang"],
+#     defines = TEST_DEFINES,
+# )
+
+cc_test(
+    name = "visitor",
+    srcs = ["visitor.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
